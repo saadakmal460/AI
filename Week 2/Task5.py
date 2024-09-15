@@ -10,7 +10,7 @@ class Graph:
         Reads the graph from a file with the specified format.
         Input: filename - name of the file containing the graph.
         """
-        with open('g.txt', 'r') as file:
+        with open(filename, 'r') as file:
             
                 lines = file.readlines()  
                 #SPLITING THE DATA GOT FROM FILE
@@ -75,8 +75,7 @@ class Graph:
     
 
 
-g = Graph()
-g.read_graph_from_file('s')
+
 
 
 def distance_dijxtra(graph,  start_vertex, end_vertex):
@@ -131,9 +130,3 @@ def dfs(graph, node, end, visited, path, current_cost, best_path, best_cost):
                 
     #REMOVING VISITED NODES WHEN RECUSRSION IS RETURNING            
     visited.remove(node)
-    
-
-start_vertex = 'A'
-end_vertex = 'C'                    
-result = distance_dijxtra(g, start_vertex, end_vertex)
-print(result)
