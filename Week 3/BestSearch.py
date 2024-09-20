@@ -1,5 +1,7 @@
 import heapq
-from Transportation import TransportationProblem
+# from Transportation import TransportationProblem
+# from Problem2 import GridWorldProblem
+
 
 class BestFirstSearch:
     def __init__(self, problem, priority_function):
@@ -8,6 +10,8 @@ class BestFirstSearch:
 
     def search(self):
         start = self.problem.start_state()
+        
+        
         if self.problem.is_end(start):
             return [start]
 
@@ -19,20 +23,25 @@ class BestFirstSearch:
         cost_so_far = {start: 0}
 
         while frontier:
-            priority, state = heapq.heappop(frontier)
-
+            
+            priority, state  = heapq.heappop(frontier)
+            
             if self.problem.is_end(state):
+                
                 path = []
                 temp = state
                 while state is not None:
                     path.append(state)
                     state = parent[state]
-                return list(reversed(path)), cost_so_far[temp]
+                return list(reversed(path)), cost_so_far[temp] 
 
             explored.add(state)
             
+            
             for action, next_state, cost in self.problem.successors(state):
+                
                 if next_state not in explored and all(node[1] != next_state for node in frontier):
+                    
                     new_cost = cost_so_far[state] + cost
                     if next_state not in cost_so_far or new_cost < cost_so_far[next_state]:
                         cost_so_far[next_state] = new_cost
@@ -42,16 +51,3 @@ class BestFirstSearch:
 
         return None
 
-
-
-
-# Example priority functions for BFS
-def bfs_priority(state, cost):
- return cost
-# Running BFS on the Transportation Problem
-
-problem = TransportationProblem(N=10)
-
-
-bfs_search = BestFirstSearch(problem, bfs_priority)
-print(bfs_search.search())

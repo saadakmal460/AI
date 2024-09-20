@@ -45,11 +45,6 @@ class DepthLimitedSearch:
         return None
 
 
-# Running DFS on the Transportation Problem
-
-problem = TransportationProblem(N=100)
-
-
 def IterativeDeapiningSearch(problem):
     depth = 0
     while True:
@@ -61,6 +56,3 @@ def IterativeDeapiningSearch(problem):
         
         depth= depth+1
         
-
-
-print(IterativeDeapiningSearch(problem))
