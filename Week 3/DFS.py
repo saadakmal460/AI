@@ -5,7 +5,7 @@ class DepthFirstSearch:
 
     def search(self):
         start = self.problem.start_state()
-        if self.problem.is_end(start):
+        if self.problem.is_goal(start):
             return [start]
 
         frontier = []
@@ -21,7 +21,7 @@ class DepthFirstSearch:
             state = frontier.pop()
             
             
-            if self.problem.is_end(state):
+            if self.problem.is_goal(state):
                 
                 path = []
                 temp = state
@@ -33,13 +33,19 @@ class DepthFirstSearch:
             explored.add(state)
     
             
-            for action , next_state , cost in self.problem.successors(state):
-                if next_state not in explored and all(node != next_state for node in frontier):
-                        
-                        new_cost = cost_so_far[state] + cost
-                        if next_state not in cost_so_far or new_cost < cost_so_far[next_state]:
-                            cost_so_far[next_state] = new_cost
-                            frontier.append(next_state)
-                            parent[next_state] = state
+            actions = self.problem.actions(state)
+            for a in actions:
+                next_state = self.problem.transition(state,a)
+                if next_state not in explored and all(node[1] != next_state for node in frontier):
+                    
+                    new_cost = cost_so_far[state] + self.problem.cost(next_state,a)
+                    if next_state not in cost_so_far or new_cost < cost_so_far[next_state]:
+                        cost_so_far[next_state] = new_cost
+                        frontier.append(next_state)
+                        parent[next_state] = state
 
         return None
+    
+    
+    
+    

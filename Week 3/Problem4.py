@@ -10,22 +10,51 @@ class WaterJugProblem:
     def start_state(self):
         return (0,0)
 
-    def is_end(self, state):
+    def is_goal(self, state):
         return state[0] == 2 or state[1] == 2
 
-    def successors(self, state):
+    def cost (self,state,action):
+        return 1
+    
+    def actions(self,state):
         
-        sucessor = []
+        actions = []
         
         if state[0] != 4:
-            new_State = (4,state[1])
-            sucessor.append(('Fill 4 gallon' , (new_State) , 1))
+            
+            actions.append('Fill 4 gallon')
             
         if state[1] != 3:
-            new_State = (3,state[1])
-            sucessor.append(('Fill 3 gallon' , (new_State) , 1))
+            
+            actions.append('Fill 3 gallon')
             
         if state[0] <= state[1]:
+            actions.append('Pour from 3 to 4 gallon')
+        
+        if state[1] <= state[0]:
+            actions.append('Pour from 4 to 3 gallon')
+        
+        if state[0] != 0:
+            
+            actions.append('Empty 4 gallon')
+        
+        if state[1] != 0:
+            actions.append('Empty 3 gallon')
+        
+        return actions
+        
+    def transition(self, state , action):
+
+        if action == 'Fill 4 gallon':
+            new_State = (4,state[1])
+            return new_State
+            
+        if action == 'Fill 3 gallon':
+            new_State = (3,state[1])
+            return new_State
+            
+            
+        if action == 'Pour from 3 to 4 gallon':
             j1 = state[0]
             j2 = state[1]
             while j2 != 0 and j1 != 4:
@@ -34,9 +63,9 @@ class WaterJugProblem:
                 
             new_State = (j1,j2)
             
-            sucessor.append(('Pour from 3 to 4 gallon' , (new_State) , 1))
+            return new_State
         
-        if state[1] <= state[0]:
+        if action == 'Pour from 4 to 3 gallon':
             j1 = state[0]
             j2 = state[1]
             while j1!=0 and j2 != 3:
@@ -44,21 +73,19 @@ class WaterJugProblem:
                 j2 = j2+1
                 
             new_State = (j1,j2)
-            
-            sucessor.append(('Pour from 4 to 3 gallon' , (new_State) , 1))
+            return new_State
         
-        if state[0] != 0:
+        if action == 'Empty 4 gallon':
             j1=0
             j2 = state[1]
-            sucessor.append(('Empty 4 gallon' , (j1,j2) , 1))
+            return (j1,j2) 
         
-        if state[1] != 0:
+        if action == 'Empty 3 gallon':
             j2=0
             j1 = state[0]
-            sucessor.append(('Empty 3 gallon' , (j1,j2) , 1))
+            return (j1,j2)
         
-                
-        return sucessor
+
 
 
 def bfs_priority(state, cost):

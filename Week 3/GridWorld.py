@@ -38,19 +38,18 @@ class GridWorldProblem:
     def successors(self, state):
         row , col = state
         sucessor = []
-        print(row)
-        print(col)
+        
         rows = len(self.grid)
         cols = len(self.grid[0])
         
         if col+1 < cols:
-            sucessor.append((state , 'Right' , (row,col+1)))
+            sucessor.append(('Right' , (row,col+1) ,1))
         if col-1 >= 0:
-            sucessor.append((state , 'Left' , (row,col-1)))
+            sucessor.append(('Left' , (row,col-1) ,1 ))
         if row+1 < rows:
-            sucessor.append((state , 'Down' , (row+1,col)))
+            sucessor.append(('Down' , (row+1,col) , 1))
         if row-1 >= 0:
-            sucessor.append((state , 'Up' , (row-1,col)))
+            sucessor.append(('Up' , (row-1,col), 1))
                 
         return sucessor
         
@@ -63,5 +62,3 @@ grid = [
 
 g = GridWorldProblem(grid)
 print(g.successors((1,1)))
-
-

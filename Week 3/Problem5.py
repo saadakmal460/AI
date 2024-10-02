@@ -5,7 +5,7 @@ from IterativeDS import IterativeDeapiningSearch
 from DFS import DepthFirstSearch
 
 
-class RobotNavigationProblem:
+class RobotNavigation:
     def __init__(self, grid , start , goal):
         self.grid = grid
         self.start = start
@@ -31,54 +31,71 @@ class RobotNavigationProblem:
                     
                 if state[0] + 1 <state[0]:
                     self.graph.add_edge(state, 'Up', 1, state[0] + 1)
-                
-                # Add edges for all possible movements (up, down, left, right)
-                # Students will implement the logic here
-        
 
     def start_state(self):
         return self.start
 
-    def is_end(self, state):
+    def is_goal(self, state):
         return state == self.goal
-
-    def successors(self, state):
+    
+    def cost(slef,state,action):
+        return 1
+    
+    
+    def actions(self,state):
         row , col = state
-        sucessor = []
+        actions = []
         
         rows = len(self.grid)
         cols = len(self.grid[0])
         
 
         if col+1 < cols and self.grid[row][col+1] != 1:
-            sucessor.append(('Right' , (row,col+1) , 1))
+            actions.append('Right')
         if col-1 >= 0 and self.grid[row][col-1] != 1:
-            sucessor.append(('Left' , (row,col-1) , 1))
+            actions.append('Left')
         if row+1 < rows and self.grid[row+1][col] != 1:
-            sucessor.append(('Down' , (row+1,col) , 1))
+            actions.append('Down')
         if row-1 >= 0 and self.grid[row-1][col] != 1:
-            sucessor.append(('Up' , (row-1,col) , 1))
+            actions.append('Up')
                 
-        return sucessor
+        return actions
+        
+
+    def transition(self, state , action):
+        row , col = state
+    
+        if action == 'Right':
+            return (row,col+1)
+        if action == 'Left':
+            return (row,col-1)
+        if action == 'Down':
+            return (row+1,col)
+        if action == 'Up':
+            return (row-1,col)
+                
+
 
 def bfs_priority(state, cost):
  return cost        
             
 grid = [
-    [0, 0, 1, 0, 0, 0],
-    [1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 1, 1, 1, 0],
     [0, 0, 0, 0, 1, 0],
-    [0, 1, 1, 0, 0, 0],
-    [0, 0, 0, 1, 1, 0],
-    [1, 1, 0, 0, 0, 0]
+    [1, 1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 1, 0],
+    [0, 1, 1, 0, 0, 0]
 ]
+
+
 
 start = (0, 0)
 end = (5, 5)
 
 
 
-p = RobotNavigationProblem(grid ,start , end)
+p = RobotNavigation(grid ,start , end)
 
 
 dfs = DepthFirstSearch(p)

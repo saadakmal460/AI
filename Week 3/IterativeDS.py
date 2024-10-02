@@ -8,7 +8,7 @@ class DepthLimitedSearch:
 
     def search(self):
         start = self.problem.start_state()
-        if self.problem.is_end(start):
+        if self.problem.is_goal(start):
             return [start]
 
         frontier = []
@@ -23,7 +23,7 @@ class DepthLimitedSearch:
             state , depth = frontier.pop()
             
             
-            if self.problem.is_end(state):
+            if self.problem.is_goal(state):
                 path = []
                 while state is not None:
                     path.append(state)
@@ -36,10 +36,12 @@ class DepthLimitedSearch:
                 
             explored.add(state)
             
-            for action, next_state, cost in self.problem.successors(state):
-                if next_state not in explored and all(node != next_state for node in frontier):
-                    frontier.append((next_state ,depth+1))
-                    parent[next_state] = state
+            actions = self.problem.actions(state)
+            for a in actions:
+                next_state = self.problem.transition(state,a)
+                if next_state not in explored and all(node[1] != next_state for node in frontier):          
+                        frontier.append((next_state ,depth+1))
+                        parent[next_state] = state
                     
 
         return None

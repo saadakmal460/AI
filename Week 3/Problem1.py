@@ -10,29 +10,50 @@ class Problem1:
     def start_state(self):
         return self.N
 
-    def is_end(self, state):
+    def is_goal(self, state):
         return state == self.goal
     
-    def successors(self, state):
-        sucessor = []
+    def cost(slef,s,a):
+        return 1
+    
+    
+    def actions(self , state):
+        actions = []
         
         if state[2] == 0:
             
             if state[0]-1 >= 0:
                 
-                sucessor.append(('Move right with one canabel' , (state[0]-1 , state[1] , 1),1))
+                actions.append('Move right with one canabel')
                 
             if state[1]-1 >= 0:
-                sucessor.append(('Move right with one missionary' , (state[0] , state[1]-1 , 1 ),1))
+                actions.append('Move right with one missionary')
             
             if state[1]-1 >= 0 and  state[0]-1 >= 0:    
-                sucessor.append(('Move right with both' , (state[0]-1 , state[1]-1 , 1),1))
+                actions.append('Move right with both')
         
         if state[2] == 1:
-            sucessor.append(('Move left' , (state[0] , state[1] , 0),1))
+            actions.append('Move left')
             
+        return actions
         
-        return sucessor
+    
+    def transition(self, state , action):
+
+        if action == "Move right with one canabel":
+            return (state[0]-1 , state[1] ,1)
+            
+        elif action == "Move right with one missionary":
+            return (state[0] , state[1]-1 ,1)
+        
+        elif action == "Move right with both":   
+            return (state[0]-1 , state[1]-1 ,1)
+    
+        elif action == "Move left": 
+            return (state[0] , state[1],0)
+
+ 
+ 
  
 def bfs_priority(state, cost):
  return cost
