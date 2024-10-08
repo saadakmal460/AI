@@ -19,8 +19,6 @@ np.random.seed(0)
 # volume_traded = np.random.randint(1000, 1000000., rows)
 
 
-
-
 # stocks_data_gen = pd.DataFrame({
 #     'date' : dates,
 #     'company' : companies,
@@ -32,16 +30,13 @@ np.random.seed(0)
 
 # stocks_data_gen.to_excel('stocks_data.xlsx', index=False)
 
-
 stocks_data = pd.read_excel('stocks_data.xlsx')
 
 
 close_price_arr = np.array(stocks_data['close_price'])
 
 open_price_arr = np.array(stocks_data['open_price'])
-
-
-sub = np.subtract(close_price_arr , open_price_arr)
+sub = np.subtract(close_price_arr , open_price_arr) 
 div = np.divide(sub , open_price_arr)
 rounded = np.round(div , decimals=2)
 change = np.multiply(rounded,100)

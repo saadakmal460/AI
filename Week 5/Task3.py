@@ -9,25 +9,25 @@ rows = 300
 names = ['Ahmed', 'Sarah', 'Ali', 'Fatima', 'Zain', 'Aisha', 'Omar', 'Noor', 'Hassan', 'Maria', 'Bilal', 'Zara', 'Saad', 'Sana', 'Imran', 'Layla', 'Usman', 'Hira', 'Yasir', 'Iman']
 department = ['HR' , 'Marketing' , 'Finanace' , 'Development' , 'Sales']
 
-# employe_id = [i for i in range(rows)]
+employe_id = [i for i in range(rows)]
 
-# employee_names = np.random.choice(names , rows)
-# employee_department = np.random.choice(department , rows)
+employee_names = np.random.choice(names , rows)
+employee_department = np.random.choice(department , rows)
 
-# salary = np.random.randint(30000, 120000, rows)
-# experience = np.random.randint(1, 25, rows)
+salary = np.random.randint(30000, 120000, rows)
+experience = np.random.randint(1, 25, rows)
 
 
 
-# employee_data_gen = pd.DataFrame({
-#     'employee_id' : employe_id,
-#     'employe_name' : employee_names,
-#     'employee_department' : employee_department,
-#     'salary' : salary,
-#     'exprience' : experience
-# })
+employee_data_gen = pd.DataFrame({
+    'employee_id' : employe_id,
+    'employe_name' : employee_names,
+    'employee_department' : employee_department,
+    'salary' : salary,
+    'exprience' : experience
+})
 
-# employee_data_gen.to_excel('employee_data.xlsx', index=False)
+employee_data_gen.to_excel('employee_data.xlsx', index=False)
 
 employee_data = pd.read_excel('employee_data.xlsx')
 

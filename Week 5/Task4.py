@@ -5,9 +5,9 @@ import matplotlib.pylab as plt
 np.random.seed(0)
 
 
-# rows = 200
-# names = ['Ahmed', 'Sarah', 'Ali', 'Fatima', 'Zain', 'Aisha', 'Omar', 'Noor', 'Hassan', 'Maria', 'Bilal', 'Zara', 'Saad', 'Sana', 'Imran', 'Layla', 'Usman', 'Hira', 'Yasir', 'Iman']
-# subjects = ['PF' , 'TOA' , 'DE' , 'DM' , 'OOP']
+rows = 200
+names = ['Ahmed', 'Sarah', 'Ali', 'Fatima', 'Zain', 'Aisha', 'Omar', 'Noor', 'Hassan', 'Maria', 'Bilal', 'Zara', 'Saad', 'Sana', 'Imran', 'Layla', 'Usman', 'Hira', 'Yasir', 'Iman']
+subjects = ['PF' , 'TOA' , 'DE' , 'DM' , 'OOP']
 
 # student_id = [i for i in range(rows)]
 # student_names = np.random.choice(names , rows)
