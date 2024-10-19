@@ -208,5 +208,4 @@ axes[1].set_xlabel('Model')
 axes[1].set_ylabel('R² Score')
 axes[1].set_title('R² Score of Models')
 
-
 plt.show()
