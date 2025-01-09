@@ -1,3 +1,5 @@
+from Task1 import Graph
+
 track = []
 cycle = []
 
@@ -26,5 +28,10 @@ def dfs_rec(graph,node,visited):
             dfs_rec(graph , i , visited)
         if i not in track and i!=node:
             cycle.extend(track)
-            
 
+g = Graph()
+
+
+g.read_graph_from_file('graph.txt')
+
+print(dfs(g,'A'))

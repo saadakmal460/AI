@@ -1,3 +1,5 @@
+from Task1 import Graph
+
 #BFS    
 def bfs(graph, start_vertex):
     
@@ -61,3 +63,12 @@ def rec_bfs(visited , graph , node , running):
     #LOOPING THROUGH THE QUEUE        
     for i in running:
         rec_bfs(visited , graph , i , running)    
+        
+g = Graph()
+
+
+g.read_graph_from_file('graph.txt')
+
+print(bfs(g,'A'))
+print(bfs_distance(g , 'A' ,  'D'))
+print(bfs_number_of_levels(g , 'A' ,  'D'))

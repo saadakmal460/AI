@@ -69,27 +69,27 @@ class Graph:
     
 
 
-g = Graph()
+# g = Graph()
 
 
-file_name = input("Enter file name: ")
+# file_name = input("Enter file name: ")
 
-g.read_graph_from_file(file_name)
+# g.read_graph_from_file(file_name)
 
-v = g.get_vertex_count()
-print(f'The vertices are {v}')
+# v = g.get_vertex_count()
+# print(f'The vertices are {v}')
 
-edges = g.get_edge_count()
-print(f'The number of edges are {edges}')
-
-
-directed = g.is_graph_directed()
-print(f'The graph is {"Directed" if directed else "Undirected"}')
+# edges = g.get_edge_count()
+# print(f'The number of edges are {edges}')
 
 
+# directed = g.is_graph_directed()
+# print(f'The graph is {"Directed" if directed else "Undirected"}')
 
-while True:
-    n = input("Enter vertex to get neighbours/ Press q to exit: ")
-    if n =='q':
-        break
-    print(f'The neighbour of {n} are {g.get_neighbors(n)}')
+
+
+# while True:
+#     n = input("Enter vertex to get neighbours/ Press q to exit: ")
+#     if n =='q':
+#         break
+#     print(f'The neighbour of {n} are {g.get_neighbors(n)}')

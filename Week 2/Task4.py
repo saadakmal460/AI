@@ -1,3 +1,4 @@
+from Task1 import Graph
 
 visited = []
 path = []
@@ -42,3 +43,11 @@ def util(graph , node , parent , start_vertex):
         path.pop()
         visited.remove(node)
         return None
+
+
+g = Graph()
+
+
+g.read_graph_from_file('g.txt')
+
+print(is_Acyclic(g,'A'))
